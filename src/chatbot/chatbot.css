@@ -27,6 +27,7 @@
   border-radius: 5px;
   font-size: 0.9rem;
   color: #fff;
+  max-width: 80vw;
   font-weight: medium;
   position: relative;
   text-align: left;
@@ -81,7 +82,7 @@
   color: #fff;
   font-weight: medium;
   position: relative;
-  width: 184.5px;
+  max-width: 80vw;
   text-align: left;
 }
 

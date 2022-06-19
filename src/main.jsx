@@ -18,7 +18,6 @@ let theme = createTheme({
   shape: {
     borderRadius: 8,
   },
-  spacing: 10,
   typography: {
     fontFamily: "Roboto, sans-serif",
     fontWeightSemiBold: 700,
