@@ -15,6 +15,16 @@ class ActionProvider {
     this.addMessageToState(loginForm);
   };
 
+  signup = () => {
+    const signupForm = this.createChatbotMessage(
+      "Enter your Name, email, Username and Password",
+      {
+        widget: "Signup",
+      }
+    );
+    this.addMessageToState(signupForm);
+  };
+
   addMessageToState = (message) => {
     this.setState((prevState) => ({
       ...prevState,

@@ -3,6 +3,7 @@ import MonitoAvatar from "./MonitoAvatar";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 import Login from "../components/Login";
+import Signup from "../components/Signup";
 import AuthOptions from "../components/AuthOptions";
 
 const config = {
@@ -33,6 +34,10 @@ const config = {
     {
       widgetName: "Login",
       widgetFunc: (props) => <Login {...props} />,
+    },
+    {
+      widgetName: "Signup",
+      widgetFunc: (props) => <Signup {...props} />,
     },
   ],
   customComponents: {
