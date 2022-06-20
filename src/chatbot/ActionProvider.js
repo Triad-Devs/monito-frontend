@@ -45,7 +45,8 @@ class ActionProvider {
     let postLoginMessage;
     if (res.status === 200) {
       postLoginMessage = this.createChatbotMessage(
-        `Welcome ${res.data.user.first_name}! What would you like to work on?`
+        `Welcome ${res.data.user.first_name}! What would you like to work on?`,
+        { widget: "Options" }
       );
     } else {
       postLoginMessage = this.createChatbotMessage(
