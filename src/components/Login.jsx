@@ -1,10 +1,11 @@
 import { useState } from "react";
 
+import axios from "axios";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
-const Login = () => {
+const Login = ({ actionProvider }) => {
   const [unameError, setUnameError] = useState(false);
   const [passError, setPassError] = useState(false);
 
@@ -38,6 +39,18 @@ const Login = () => {
     if (submit) {
       console.log(formData);
       //PERFORM AXIOS POST HERE
+      console.log(formData);
+      axios
+        .post(`http://localhost:8000/auth/login`, formData)
+        .then((res) => {
+          console.log(res);
+          localStorage.setItem("userData", JSON.stringify(res.data));
+          actionProvider.postLogin(res);
+        })
+        .catch((err) => {
+          actionProvider.postLogin(err);
+          console.log(err);
+        });
     }
   };
 
