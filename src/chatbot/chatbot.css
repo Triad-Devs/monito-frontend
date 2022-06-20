@@ -173,12 +173,14 @@
   width: 100%;
   display: flex;
   position: fixed;
+  z-index: 100;
 }
 
 .react-chatbot-kit-chat-message-container {
   padding: 0 17.5px 10px 17.5px;
   /* overflow: scroll; */
   height: 100%;
+  margin-bottom: 25px;
 }
 
 .react-chatbot-kit-chat-input {

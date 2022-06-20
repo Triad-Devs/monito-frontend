@@ -17,6 +17,7 @@ const BotHeader = () => {
           sx={{ ml: 1, mt: { xs: 1, sm: 0 } }}
           variant="outlined"
           onClick={logout}
+          size="small"
         >
           Logout
         </Button>
