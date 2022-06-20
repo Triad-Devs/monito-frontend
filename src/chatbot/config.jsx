@@ -1,10 +1,12 @@
-import { createChatBotMessage } from "react-chatbot-kit";
+import { getUserData } from "../utils";
 import MonitoAvatar from "./MonitoAvatar";
+import { createChatBotMessage } from "react-chatbot-kit";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 import Login from "../components/Login";
 import Signup from "../components/Signup";
 import Options from "../components/Options";
+import BotHeader from "../components/BotHeader";
 import AuthOptions from "../components/AuthOptions";
 
 const getInitialMessages = () => {
@@ -14,7 +16,7 @@ const getInitialMessages = () => {
     ),
   ];
 
-  const userData = JSON.parse(localStorage.getItem("userData"));
+  const userData = getUserData();
 
   if (userData) {
     initialMessages.push(
@@ -77,6 +79,7 @@ const config = {
         {...props}
       />
     ),
+    header: () => <BotHeader />,
   },
 };
 

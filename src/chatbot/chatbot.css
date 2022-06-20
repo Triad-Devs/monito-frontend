@@ -161,6 +161,7 @@
   font-family: Arial;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   font-size: 0.85rem;
   color: #514f4f;
   padding: 12.5px;
