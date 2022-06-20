@@ -73,7 +73,7 @@ const Signup = () => {
 
   return (
     <Box component="form" sx={{ ml: 5 }} onSubmit={handleSubmit}>
-      <Box sx={{ mb: 2 }}>
+      <Box sx={{ mb: 1 }}>
         <TextField
           required
           size="small"
@@ -87,11 +87,11 @@ const Signup = () => {
           size="small"
           name="lastName"
           label="Last Name"
-          sx={{ mr: 2 }}
+          sx={{ mr: 2, ml: { xs: 1, sm: 0 }, mt: { xs: 1, sm: 0 } }}
           error={lnameError}
         />
       </Box>
-      <Box sx={{ mb: 2 }}>
+      <Box sx={{ mb: 1 }}>
         <TextField
           required
           size="small"
@@ -105,11 +105,11 @@ const Signup = () => {
           size="small"
           name="username"
           label="Username"
-          sx={{ mr: 2 }}
+          sx={{ mr: 2, ml: { xs: 1, sm: 0 }, mt: { xs: 1, sm: 0 } }}
           error={unameError}
         />
       </Box>
-      <Box sx={{ mb: 2 }}>
+      <Box sx={{ mb: 1 }}>
         <TextField
           required
           type="password"

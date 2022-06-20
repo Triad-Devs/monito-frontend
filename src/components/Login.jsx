@@ -57,10 +57,14 @@ const Login = () => {
         size="small"
         name="password"
         label="Password"
-        sx={{ mr: 2 }}
+        sx={{ mr: 2, ml: { xs: 1, sm: 0 }, mt: { xs: 1, sm: 0 } }}
         error={passError}
       />
-      <Button type="submit" sx={{ mt: 0.2 }} variant="contained">
+      <Button
+        type="submit"
+        sx={{ mt: 0.2, mt: { xs: 1, sm: 0 } }}
+        variant="contained"
+      >
         Submit
       </Button>
     </Box>
