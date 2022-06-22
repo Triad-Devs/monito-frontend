@@ -1,10 +1,10 @@
 import axios from "axios";
+import axiosInstance from "../axiosInstance";
 
-const baseURL = "http://localhost:8000/monitor/new_url";
-
-const postNewUrl = async (urlData) => {
-  const { data } = await axios.post(baseURL, urlData);
-  return data;
+const postNewUrl = async (data) => {
+  const { resData } = await axiosInstance.post("monitor/new_url", data);
+  console.log({ resData });
+  return resData;
 };
 
 export { postNewUrl };

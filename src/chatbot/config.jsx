@@ -8,6 +8,7 @@ import Signup from "../components/Signup";
 import Options from "../components/Options";
 import BotHeader from "../components/BotHeader";
 import AuthOptions from "../components/AuthOptions";
+import MonitorNewUrlForm from "../components/MonitorNewUrlForm";
 
 const getInitialMessages = () => {
   let initialMessages = [
@@ -69,6 +70,10 @@ const config = {
     {
       widgetName: "Options",
       widgetFunc: (props) => <Options {...props} />,
+    },
+    {
+      widgetName: "MonitorNewUrlForm",
+      widgetFunc: (props) => <MonitorNewUrlForm {...props} />,
     },
   ],
   customComponents: {

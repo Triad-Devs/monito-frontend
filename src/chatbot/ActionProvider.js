@@ -57,6 +57,14 @@ class ActionProvider {
     this.addMessageToState(postLoginMessage);
   };
 
+  monitoNewUrl = () => {
+    const newUrlMessage = this.createChatbotMessage(
+      `Enter the URL details to monitor`,
+      { widget: "MonitorNewUrlForm" }
+    );
+    this.addMessageToState(newUrlMessage);
+  };
+
   addMessageToState = (message) => {
     this.setState((prevState) => ({
       ...prevState,
