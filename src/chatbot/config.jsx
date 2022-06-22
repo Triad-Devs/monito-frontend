@@ -6,8 +6,10 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Login from "../components/Login";
 import Signup from "../components/Signup";
 import Options from "../components/Options";
+import URLList from "../components/URLList";
 import BotHeader from "../components/BotHeader";
 import AuthOptions from "../components/AuthOptions";
+import CurrentStatus from "../components/CurrentStatus";
 import MonitorNewUrlForm from "../components/MonitorNewUrlForm";
 
 const getInitialMessages = () => {
@@ -74,6 +76,14 @@ const config = {
     {
       widgetName: "MonitorNewUrlForm",
       widgetFunc: (props) => <MonitorNewUrlForm {...props} />,
+    },
+    {
+      widgetName: "URLList",
+      widgetFunc: (props) => <URLList {...props} />,
+    },
+    {
+      widgetName: "CurrentStatus",
+      widgetFunc: (props) => <CurrentStatus {...props} />,
     },
   ],
   customComponents: {

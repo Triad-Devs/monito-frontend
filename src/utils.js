@@ -11,3 +11,11 @@ export const REPEAT_AFTER = {
   "12 Hours": 720,
   "1 Day": 1440,
 };
+
+export const CHIP_COLOR = {
+  GET: "info",
+  POST: "success",
+  DELETE: "error",
+  PUT: "default",
+  PATCH: "default",
+};

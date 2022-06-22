@@ -65,6 +65,22 @@ class ActionProvider {
     this.addMessageToState(newUrlMessage);
   };
 
+  checkExistingUrls = () => {
+    const newUrlMessage = this.createChatbotMessage(
+      `Here are the URLs currently being monitored.`,
+      { widget: "URLList" }
+    );
+    this.addMessageToState(newUrlMessage);
+  };
+
+  // checkCurrentStatus = (data) => {
+  //   const newMessage = this.createChatbotMessage(
+  //     `Here are the current status.`,
+  //     { widget: "URLList" }
+  //   );
+  //   this.addMessageToState(newUrlMessage);
+  // };
+
   addMessageToState = (message) => {
     this.setState((prevState) => ({
       ...prevState,

@@ -3,6 +3,7 @@ import { useState } from "react";
 import Editor from "@monaco-editor/react";
 import { REQUEST_VERBS, REPEAT_AFTER } from "../utils";
 import { postNewUrl } from "../services/monitorServices";
+import { createChatBotMessage } from "react-chatbot-kit";
 
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -73,32 +74,26 @@ const MonitorNewUrlForm = ({ actionProvider }) => {
       setEditorError(true);
       console.log("editor haga");
     }
-    // if (formData.bearer === "" || formData.username.length < 6) {
-    //   // setUnameError(true);
-    //   submit = false;
-    //   console.log(formData.username);
-    // }
-
-    // if (formData.password === "" || formData.password.length < 6) {
-    //   submit = false;
-    //   console.log(formData.password);
-    // }
 
     if (submit) {
       console.log(formData);
       //PERFORM AXIOS POST HERE
-      postNewUrl(formData).then((d) => console.log(d));
-      // axios
-      //   .post(`http://localhost:8000/auth/login`, formData)
-      //   .then((res) => {
-      //     console.log(res);
-      //     localStorage.setItem("userData", JSON.stringify(res.data));
-      //     actionProvider.postLogin(res);
-      //   })
-      //   .catch((err) => {
-      //     actionProvider.postLogin(err);
-      //     console.log(err);
-      //   });
+      postNewUrl(formData)
+        .then((d) => {
+          actionProvider.addMessageToState(
+            createChatBotMessage(
+              `The URL ${d.data.url} is now being monitored!`,
+              { widget: "Options" }
+            )
+          );
+        })
+        .catch((err) => {
+          actionProvider.addMessageToState(
+            createChatBotMessage(`We met an error please try again :(`, {
+              widget: "Options",
+            })
+          );
+        });
     }
   };
 
