@@ -84,6 +84,7 @@ const config = {
     {
       widgetName: "CurrentStatus",
       widgetFunc: (props) => <CurrentStatus {...props} />,
+      mapStateToProps: ["currentStatusData"],
     },
   ],
   customComponents: {

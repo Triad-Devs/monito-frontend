@@ -8,8 +8,21 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
 
-const URLList = ({ actionProvider }) => {
+const URLList = ({ actionProvider, setState }) => {
   const [data, setData] = useState([]);
+
+  const currentStatus = (reqData) => {
+    setState((prev) => ({
+      ...prev,
+      currentStatusData: reqData,
+    }));
+    console.log(reqData);
+    actionProvider.currentStatus(reqData);
+  };
+
+  const statistics = (d) => {};
+
+  const details = (d) => {};
 
   useEffect(() => {
     fetchUrls().then((d) => {
@@ -50,20 +63,33 @@ const URLList = ({ actionProvider }) => {
               spacing={1}
               sx={{ ml: { xs: 5 }, mt: { xs: 1, md: 0 } }}
             >
-              <Button
-                size="small"
-                variant="outlined"
-                // onClick={(d) => actionProvider.checkCurrentStatus(d)}
-              >
-                Check Current Status
-              </Button>
-              <Button
-                size="small"
-                variant="outlined"
-                onClick={actionProvider.viewStatistics}
-              >
-                View Statistics
-              </Button>
+              <div>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  onClick={() => currentStatus(d)}
+                >
+                  Current Status
+                </Button>
+              </div>
+              <div>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  onClick={(d) => statistics(d)}
+                >
+                  View Statistics
+                </Button>
+              </div>
+              <div>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  onClick={(d) => details(d)}
+                >
+                  View Details
+                </Button>
+              </div>
             </Stack>
           </Box>
         );

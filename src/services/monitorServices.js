@@ -13,4 +13,10 @@ const fetchUrls = async () => {
   return resData.data;
 };
 
-export { postNewUrl, fetchUrls };
+const getCurrentStatus = async (id) => {
+  const resData = await axiosInstance.get(`monitor/execute/${id}`);
+  console.log({ resData });
+  return resData;
+};
+
+export { postNewUrl, fetchUrls, getCurrentStatus };

@@ -73,13 +73,13 @@ class ActionProvider {
     this.addMessageToState(newUrlMessage);
   };
 
-  // checkCurrentStatus = (data) => {
-  //   const newMessage = this.createChatbotMessage(
-  //     `Here are the current status.`,
-  //     { widget: "URLList" }
-  //   );
-  //   this.addMessageToState(newUrlMessage);
-  // };
+  currentStatus = (reqData) => {
+    const currentStatusMessage = this.createChatbotMessage(
+      `Here is the current Status for ${reqData.url}`,
+      { widget: "CurrentStatus" }
+    );
+    this.addMessageToState(currentStatusMessage);
+  };
 
   addMessageToState = (message) => {
     this.setState((prevState) => ({
