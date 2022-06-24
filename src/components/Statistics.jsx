@@ -32,11 +32,13 @@ const Statistics = ({ statisticsData }) => {
             {data.per_day_stats.map((d) => {
               return (
                 <div>
-                  {new Date(d.day).toLocaleDateString("en-IN", {
-                    year: "numeric",
-                    month: "2-digit",
-                    day: "2-digit",
-                  })}
+                  <div>
+                    {new Date(d.day).toLocaleDateString("en-IN", {
+                      year: "numeric",
+                      month: "2-digit",
+                      day: "2-digit",
+                    })}
+                  </div>
                   <Box sx={{ ml: 2, mb: 2 }}>
                     <div>Number of Requests: {d.count}</div>
                     <div>

@@ -58,6 +58,11 @@ const config = {
       backgroundColor: "#1F1B24",
     },
   },
+  state: {
+    detailsData: {},
+    statisticsData: {},
+    currentStatusData: {},
+  },
   widgets: [
     {
       widgetName: "AuthOptions",

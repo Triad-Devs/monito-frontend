@@ -73,11 +73,7 @@ const Login = ({ actionProvider }) => {
         sx={{ mr: 2, ml: { xs: 1, sm: 0 }, mt: { xs: 1, sm: 0 } }}
         error={passError}
       />
-      <Button
-        type="submit"
-        sx={{ mt: 0.2, mt: { xs: 1, sm: 0 } }}
-        variant="contained"
-      >
+      <Button type="submit" sx={{ mt: { xs: 1, sm: 0 } }} variant="contained">
         Submit
       </Button>
     </Box>
