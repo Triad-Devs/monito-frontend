@@ -75,10 +75,18 @@ class ActionProvider {
 
   currentStatus = (reqData) => {
     const currentStatusMessage = this.createChatbotMessage(
-      `Here is the current Status for ${reqData.url}`,
+      `Here is the current status for ${reqData.url}`,
       { widget: "CurrentStatus" }
     );
     this.addMessageToState(currentStatusMessage);
+  };
+
+  details = (reqData) => {
+    const detailsMessage = this.createChatbotMessage(
+      `Here are the provided details for ${reqData.url}`,
+      { widget: "Details" }
+    );
+    this.addMessageToState(detailsMessage);
   };
 
   addMessageToState = (message) => {

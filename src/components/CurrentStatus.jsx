@@ -4,7 +4,7 @@ import { getCurrentStatus } from "../services/monitorServices";
 import Box from "@mui/material/Box";
 
 const CurrentStatus = ({ currentStatusData }) => {
-  const [data, setData] = useState("Processing request...");
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     getCurrentStatus(currentStatusData.id).then((d) => setData(d));
@@ -12,13 +12,19 @@ const CurrentStatus = ({ currentStatusData }) => {
 
   return (
     <Box sx={{ ml: 6 }}>
-      <div>Response Status Code: {data.status}</div>
-      <div>Response Status Text: {data.statusText}</div>
-      <div>
-        {data.status < 400
-          ? "Congratulations! The URL is Live!"
-          : "OOPS! The URL met an error!"}
-      </div>
+      {data ? (
+        <>
+          <div>Response Status Code: {data.status}</div>
+          <div>Response Status Text: {data.statusText}</div>
+          <div>
+            {data.status < 400
+              ? "Congratulations! The URL is Live!"
+              : "OOPS! The URL met an error!"}
+          </div>
+        </>
+      ) : (
+        "Processing Request..."
+      )}
     </Box>
   );
 };

@@ -2,6 +2,10 @@ export const getUserData = () => JSON.parse(localStorage.getItem("userData"));
 
 export const REQUEST_VERBS = ["GET", "POST", "PUT", "PATCH", "DELETE"];
 
+export const getKeyByValue = (object, value) => {
+  return Object.keys(object).find((key) => object[key] === value);
+};
+
 export const REPEAT_AFTER = {
   "1 minute": 1,
   "5 Minutes": 5,

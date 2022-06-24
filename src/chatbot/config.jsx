@@ -5,6 +5,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 import Login from "../components/Login";
 import Signup from "../components/Signup";
+import Details from "../components/Details";
 import Options from "../components/Options";
 import URLList from "../components/URLList";
 import BotHeader from "../components/BotHeader";
@@ -85,6 +86,16 @@ const config = {
       widgetName: "CurrentStatus",
       widgetFunc: (props) => <CurrentStatus {...props} />,
       mapStateToProps: ["currentStatusData"],
+    },
+    {
+      widgetName: "CurrentStatus",
+      widgetFunc: (props) => <CurrentStatus {...props} />,
+      mapStateToProps: ["currentStatusData"],
+    },
+    {
+      widgetName: "Details",
+      widgetFunc: (props) => <Details {...props} />,
+      mapStateToProps: ["detailsData"],
     },
   ],
   customComponents: {

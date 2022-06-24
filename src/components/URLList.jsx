@@ -20,9 +20,16 @@ const URLList = ({ actionProvider, setState }) => {
     actionProvider.currentStatus(reqData);
   };
 
-  const statistics = (d) => {};
+  const statistics = (reqData) => {};
 
-  const details = (d) => {};
+  const details = (reqData) => {
+    setState((prev) => ({
+      ...prev,
+      detailsData: reqData,
+    }));
+    console.log(reqData);
+    actionProvider.details(reqData);
+  };
 
   useEffect(() => {
     fetchUrls().then((d) => {
@@ -76,7 +83,7 @@ const URLList = ({ actionProvider, setState }) => {
                 <Button
                   size="small"
                   variant="outlined"
-                  onClick={(d) => statistics(d)}
+                  onClick={() => statistics(d)}
                 >
                   View Statistics
                 </Button>
@@ -85,7 +92,7 @@ const URLList = ({ actionProvider, setState }) => {
                 <Button
                   size="small"
                   variant="outlined"
-                  onClick={(d) => details(d)}
+                  onClick={() => details(d)}
                 >
                   View Details
                 </Button>

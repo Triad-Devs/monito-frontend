@@ -19,4 +19,10 @@ const getCurrentStatus = async (id) => {
   return resData;
 };
 
-export { postNewUrl, fetchUrls, getCurrentStatus };
+const getDetails = async (id) => {
+  const resData = await axiosInstance.get(`monitor/url_details/${id}`);
+  console.log({ resData });
+  return resData;
+};
+
+export { postNewUrl, fetchUrls, getCurrentStatus, getDetails };
