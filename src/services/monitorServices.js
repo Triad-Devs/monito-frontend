@@ -9,20 +9,22 @@ const postNewUrl = async (data) => {
 
 const fetchUrls = async () => {
   const resData = await axiosInstance.get("monitor/list_url");
-  console.log({ resData });
   return resData.data;
 };
 
 const getCurrentStatus = async (id) => {
   const resData = await axiosInstance.get(`monitor/execute/${id}`);
-  console.log({ resData });
   return resData;
 };
 
 const getDetails = async (id) => {
   const resData = await axiosInstance.get(`monitor/url_details/${id}`);
-  console.log({ resData });
   return resData;
 };
 
-export { postNewUrl, fetchUrls, getCurrentStatus, getDetails };
+const getStatistics = async (id) => {
+  const resData = await axiosInstance.get(`monitor/stats/${id}`);
+  return resData;
+};
+
+export { postNewUrl, fetchUrls, getCurrentStatus, getDetails, getStatistics };

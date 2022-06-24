@@ -89,6 +89,14 @@ class ActionProvider {
     this.addMessageToState(detailsMessage);
   };
 
+  urlStatistics = (reqData) => {
+    const statisticsMessage = this.createChatbotMessage(
+      `Here are the detailed statistics for ${reqData.url}`,
+      { widget: "Statistics" }
+    );
+    this.addMessageToState(statisticsMessage);
+  };
+
   addMessageToState = (message) => {
     this.setState((prevState) => ({
       ...prevState,

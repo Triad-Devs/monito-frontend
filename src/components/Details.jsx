@@ -13,27 +13,25 @@ const Details = ({ detailsData }) => {
   }, []);
 
   return (
-    <div>
-      <Box sx={{ ml: 6 }}>
-        <div>Description: {data.description}</div>
-        <div>HTTP Method: {data.httpMethod}</div>
-        <div>
-          URL: <a href={data.url}>{data.url}</a>
-        </div>
-        <div>Is the URL an API: {data.isAPI ? "Yes" : "No"}</div>
-        <div>Authentication Required: {data.authReq ? "Yes" : "No"}</div>
-        {data.authReq && <div>Bearer Token: {data.bearer}</div>}
-        <div>Repeat After: {getKeyByValue(REPEAT_AFTER, data.repeatAfter)}</div>
-        {["PUT", "POST", "PATCH"].includes(data.httpMethod) && (
-          <>
-            <div>JSON Payload:</div>
-            <div>
-              <pre>{data.JSONbody}</pre>
-            </div>
-          </>
-        )}
-      </Box>
-    </div>
+    <Box sx={{ ml: 6 }}>
+      <div>Description: {data.description}</div>
+      <div>HTTP Method: {data.httpMethod}</div>
+      <div>
+        URL: <a href={data.url}>{data.url}</a>
+      </div>
+      <div>Is the URL an API: {data.isAPI ? "Yes" : "No"}</div>
+      <div>Authentication Required: {data.authReq ? "Yes" : "No"}</div>
+      {data.authReq && <div>Bearer Token: {data.bearer}</div>}
+      <div>Repeat After: {getKeyByValue(REPEAT_AFTER, data.repeatAfter)}</div>
+      {["PUT", "POST", "PATCH"].includes(data.httpMethod) && (
+        <>
+          <div>JSON Payload:</div>
+          <div>
+            <pre>{data.JSONbody}</pre>
+          </div>
+        </>
+      )}
+    </Box>
   );
 };
 

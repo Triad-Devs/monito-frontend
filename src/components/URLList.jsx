@@ -20,7 +20,14 @@ const URLList = ({ actionProvider, setState }) => {
     actionProvider.currentStatus(reqData);
   };
 
-  const statistics = (reqData) => {};
+  const statistics = (reqData) => {
+    setState((prev) => ({
+      ...prev,
+      statisticsData: reqData,
+    }));
+    console.log(reqData);
+    actionProvider.urlStatistics(reqData);
+  };
 
   const details = (reqData) => {
     setState((prev) => ({

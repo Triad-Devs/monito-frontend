@@ -9,6 +9,7 @@ import Details from "../components/Details";
 import Options from "../components/Options";
 import URLList from "../components/URLList";
 import BotHeader from "../components/BotHeader";
+import Statistics from "../components/Statistics";
 import AuthOptions from "../components/AuthOptions";
 import CurrentStatus from "../components/CurrentStatus";
 import MonitorNewUrlForm from "../components/MonitorNewUrlForm";
@@ -96,6 +97,11 @@ const config = {
       widgetName: "Details",
       widgetFunc: (props) => <Details {...props} />,
       mapStateToProps: ["detailsData"],
+    },
+    {
+      widgetName: "Statistics",
+      widgetFunc: (props) => <Statistics {...props} />,
+      mapStateToProps: ["statisticsData"],
     },
   ],
   customComponents: {
