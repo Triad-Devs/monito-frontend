@@ -139,20 +139,20 @@
   width: 100%;
 }
 
-.react-chatbot-kit-chat-inner-container {
-  /* background-image: radial-gradient(73% 147%, #eadfdf 59%, #ece2df 100%),
+/* .react-chatbot-kit-chat-inner-container {
+  background-image: radial-gradient(73% 147%, #eadfdf 59%, #ece2df 100%),
     radial-gradient(
       91% 146%,
       rgba(255, 255, 255, 0.5) 47%,
       rgba(0, 0, 0, 0.5) 100%
     );
-  /* background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1920' height='1080' preserveAspectRatio='none' viewBox='0 0 1920 1080'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1477%26quot%3b)' fill='none'%3e%3crect width='1920' height='1080' x='0' y='0' fill='rgba(255%2c 255%2c 255%2c 1)'%3e%3c/rect%3e%3cpath d='M447.64 -14.04L610.46 79.96L610.46 267.96L447.64 361.96L284.83 267.96L284.83 79.96zM936.1 831.96L1098.91 925.96L1098.91 1113.96L936.1 1207.96L773.28 1113.96L773.28 925.96zM773.28 1113.96L936.1 1207.96L936.1 1395.96L773.28 1489.96L610.46 1395.96L610.46 1207.96zM1098.91 -14.04L1261.73 79.96L1261.73 267.96L1098.91 361.96L936.1 267.96L936.1 79.96zM1261.73 267.96L1424.55 361.96L1424.55 549.96L1261.73 643.96L1098.91 549.96L1098.91 361.96zM1424.55 549.96L1587.37 643.96L1587.37 831.96L1424.55 925.96L1261.73 831.96L1261.73 643.96zM1587.37 831.96L1750.18 925.96L1750.18 1113.96L1587.37 1207.96L1424.55 1113.96L1424.55 925.96zM1750.18 549.96L1913 643.96L1913 831.96L1750.18 925.96L1587.37 831.96L1587.37 643.96z' stroke='rgba(0%2c 0%2c 0%2c 0.93)' stroke-width='2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1477'%3e%3crect width='1920' height='1080' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e"); */
-  /* background-repeat: repeat-y;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1920' height='1080' preserveAspectRatio='none' viewBox='0 0 1920 1080'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1477%26quot%3b)' fill='none'%3e%3crect width='1920' height='1080' x='0' y='0' fill='rgba(255%2c 255%2c 255%2c 1)'%3e%3c/rect%3e%3cpath d='M447.64 -14.04L610.46 79.96L610.46 267.96L447.64 361.96L284.83 267.96L284.83 79.96zM936.1 831.96L1098.91 925.96L1098.91 1113.96L936.1 1207.96L773.28 1113.96L773.28 925.96zM773.28 1113.96L936.1 1207.96L936.1 1395.96L773.28 1489.96L610.46 1395.96L610.46 1207.96zM1098.91 -14.04L1261.73 79.96L1261.73 267.96L1098.91 361.96L936.1 267.96L936.1 79.96zM1261.73 267.96L1424.55 361.96L1424.55 549.96L1261.73 643.96L1098.91 549.96L1098.91 361.96zM1424.55 549.96L1587.37 643.96L1587.37 831.96L1424.55 925.96L1261.73 831.96L1261.73 643.96zM1587.37 831.96L1750.18 925.96L1750.18 1113.96L1587.37 1207.96L1424.55 1113.96L1424.55 925.96zM1750.18 549.96L1913 643.96L1913 831.96L1750.18 925.96L1587.37 831.96L1587.37 643.96z' stroke='rgba(0%2c 0%2c 0%2c 0.93)' stroke-width='2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1477'%3e%3crect width='1920' height='1080' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+  background-repeat: repeat-y;
   background-size: 100%;
   background-blend-mode: screen;
   border-radius: 5px;
-  height: 95vh; */
-}
+  height: 95vh;
+} */
 
 .react-chatbot-kit-chat-header {
   border-top-right-radius: 5px;

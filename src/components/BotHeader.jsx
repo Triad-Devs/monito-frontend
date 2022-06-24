@@ -6,7 +6,7 @@ const BotHeader = () => {
 
   const logout = () => {
     localStorage.removeItem("userData");
-    location.reload();
+    window.location.reload();
   };
 
   return (
