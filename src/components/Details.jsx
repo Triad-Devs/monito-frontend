@@ -27,7 +27,7 @@ const Details = ({ detailsData }) => {
         <>
           <div>JSON Payload:</div>
           <div>
-            <pre>{data.JSONbody}</pre>
+            <pre>{JSON.stringify(data.JSONbody, null, 2)}</pre>
           </div>
         </>
       )}

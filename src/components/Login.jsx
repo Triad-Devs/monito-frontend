@@ -24,7 +24,7 @@ const Login = ({ actionProvider }) => {
 
     let submit = true;
 
-    if (formData.username === "" || formData.username.length < 6) {
+    if (formData.username === "" || formData.username.length < 4) {
       setUnameError(true);
       submit = false;
       console.log(formData.username);
