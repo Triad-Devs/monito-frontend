@@ -31,7 +31,7 @@ const Statistics = ({ statisticsData }) => {
           <Box sx={{ ml: 2 }}>
             {data.per_day_stats.map((d) => {
               return (
-                <div>
+                <div key={d.day}>
                   <div>
                     {new Date(d.day).toLocaleDateString("en-IN", {
                       year: "numeric",
