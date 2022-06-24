@@ -43,6 +43,7 @@
     ]
   },
   "devDependencies": {
+    "postcss": "^8.4.14",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^7.7.2"
