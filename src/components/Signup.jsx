@@ -69,7 +69,7 @@ const Signup = ({ actionProvider }) => {
     if (submit) {
       console.log(formData);
       axios
-        .post(`http://localhost:8000/auth/register`, formData)
+        .post(`${process.env.REACT_APP_BACKEND_URL}auth/register`, formData)
         .then((res) => {
           console.log(res);
           actionProvider.postSignup(res);

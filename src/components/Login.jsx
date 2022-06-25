@@ -41,7 +41,7 @@ const Login = ({ actionProvider }) => {
       //PERFORM AXIOS POST HERE
       console.log(formData);
       axios
-        .post(`http://localhost:8000/auth/login`, formData)
+        .post(`${process.env.REACT_APP_BACKEND_URL}auth/login`, formData)
         .then((res) => {
           console.log(res);
           localStorage.setItem("userData", JSON.stringify(res.data));
