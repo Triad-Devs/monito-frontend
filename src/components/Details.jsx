@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Editor from "@monaco-editor/react";
 import { getDetails } from "../services/monitorServices";
 import { REPEAT_AFTER, getKeyByValue } from "../utils";
 
@@ -14,18 +13,34 @@ const Details = ({ detailsData }) => {
 
   return (
     <Box sx={{ ml: 6 }}>
-      <div>Description: {data.description}</div>
-      <div>HTTP Method: {data.httpMethod}</div>
       <div>
-        URL: <a href={data.url}>{data.url}</a>
+        <b>Description</b>: {data.description}
       </div>
-      <div>Is the URL an API: {data.isAPI ? "Yes" : "No"}</div>
-      <div>Authentication Required: {data.authReq ? "Yes" : "No"}</div>
-      {data.authReq && <div>Bearer Token: {data.bearer}</div>}
-      <div>Repeat After: {getKeyByValue(REPEAT_AFTER, data.repeatAfter)}</div>
+      <div>
+        <b>HTTP Method</b>: {data.httpMethod}
+      </div>
+      <div>
+        <b>URL</b>: <a href={data.url}>{data.url}</a>
+      </div>
+      <div>
+        <b>Is the URL an API</b>: {data.isAPI ? "Yes" : "No"}
+      </div>
+      <div>
+        <b>Authentication Required</b>: {data.authReq ? "Yes" : "No"}
+      </div>
+      {data.authReq && (
+        <div>
+          <b>Bearer Token</b>: {data.bearer}
+        </div>
+      )}
+      <div>
+        <b>Repeat After</b>: {getKeyByValue(REPEAT_AFTER, data.repeatAfter)}
+      </div>
       {["PUT", "POST", "PATCH"].includes(data.httpMethod) && (
         <>
-          <div>JSON Payload:</div>
+          <div>
+            <b>JSON Payload</b>:
+          </div>
           <div>
             <pre>{JSON.stringify(data.JSONbody, null, 2)}</pre>
           </div>

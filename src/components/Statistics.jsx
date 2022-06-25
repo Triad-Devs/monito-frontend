@@ -14,39 +14,58 @@ const Statistics = ({ statisticsData }) => {
     <Box sx={{ ml: 6 }}>
       {data ? (
         <>
-          <div>Total Requests: {data.total_requests}</div>
-          <div>Successful Requests: {data.success_requests}</div>
-          <div>Failed Requests: {data.failed_requests}</div>
-          <div>Success Rate(%): {data["success_rate(%)"].toFixed(2)}</div>
-          <div>Error Rate(%): {data["error_rate(%)"].toFixed(2)}</div>
           <div>
-            Average Response Time(seconds):{" "}
+            <b>Total Requests</b>: {data.total_requests}
+          </div>
+          <div>
+            <b>Successful Requests</b>: {data.success_requests}
+          </div>
+          <div>
+            <b>Failed Requests</b>: {data.failed_requests}
+          </div>
+          <div>
+            <b>Success Rate(%)</b>: {data["success_rate(%)"].toFixed(2)}
+          </div>
+          <div>
+            <b>Error Rate(%)</b>: {data["error_rate(%)"].toFixed(2)}
+          </div>
+          <div>
+            <b>Average Response Time(seconds)</b>:{" "}
             {data["avg_response_time(s)"].toFixed(3)}
           </div>
-          <div>Total bytes transferred: {data.total_bytes_transferred}</div>
           <div>
-            Average Bytes Transferred/day: {data.avg_bytes_transferred_per_day}
+            <b>Total bytes transferred</b>: {data.total_bytes_transferred}
           </div>
-          <p>Daily Statistics:</p>
+          <div>
+            <b>Average Bytes Transferred/day</b>:{" "}
+            {data.avg_bytes_transferred_per_day}
+          </div>
+          <p>
+            <b>Daily Statistics</b>:
+          </p>
           <Box sx={{ ml: 2 }}>
             {data.per_day_stats.map((d) => {
               return (
                 <div key={d.day}>
                   <div>
-                    {new Date(d.day).toLocaleDateString("en-IN", {
-                      year: "numeric",
-                      month: "2-digit",
-                      day: "2-digit",
-                    })}
+                    <b>
+                      {new Date(d.day).toLocaleDateString("en-IN", {
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit",
+                      })}
+                    </b>
                   </div>
                   <Box sx={{ ml: 2, mb: 2 }}>
-                    <div>Number of Requests: {d.count}</div>
                     <div>
-                      Total bytes transferred:{" "}
+                      <b>Number of Requests</b>: {d.count}
+                    </div>
+                    <div>
+                      <b>Total bytes transferred</b>:{" "}
                       {d.total_bytes_transferred.toFixed(2)}
                     </div>
                     <div>
-                      Average Bytes Transferred:{" "}
+                      <b>Average Bytes Transferred</b>:{" "}
                       {d.avg_bytes_transferred.toFixed(2)}
                     </div>
                   </Box>
@@ -54,8 +73,12 @@ const Statistics = ({ statisticsData }) => {
               );
             })}
           </Box>
-          <img width={375} src={data.traffic_graph_url} />
-          <img width={375} src={data.response_time_graph_url} />
+          <img width={375} src={data.traffic_graph_url} alt="Traffic Graph" />
+          <img
+            width={375}
+            src={data.response_time_graph_url}
+            alt="Response Time Graph"
+          />
           {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
         </>
       ) : (

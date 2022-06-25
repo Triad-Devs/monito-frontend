@@ -9,17 +9,30 @@ const CurrentStatus = ({ currentStatusData }) => {
   useEffect(() => {
     getCurrentStatus(currentStatusData.id).then((d) => setData(d));
   }, []);
+  console.log({ data });
 
   return (
     <Box sx={{ ml: 6 }}>
       {data ? (
         <>
-          <div>Response Status Code: {data.status}</div>
-          <div>Response Status Text: {data.statusText}</div>
           <div>
-            {data.status < 400
-              ? "Congratulations! The URL is Live!"
-              : "OOPS! The URL met an error!"}
+            <b>Response Status Code</b>: {data.status}
+          </div>
+          <div>
+            <b>Response Status Text</b>: {data.statusText}
+          </div>
+          <div>
+            <b>Content Length</b>: {data.headers["content-length"]}
+          </div>
+          <div>
+            <b>Content Type</b>: {data.headers["content-type"]}
+          </div>
+          <div>
+            <b>
+              {data.status < 400
+                ? "Congratulations! The URL is Live!"
+                : "OOPS! The URL met an error!"}
+            </b>
           </div>
         </>
       ) : (
