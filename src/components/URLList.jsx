@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { CHIP_COLOR } from "../utils";
 import { fetchUrls } from "../services/monitorServices";
-
+import MonitorNewUrlForm from "./MonitorNewUrlForm";
 import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
@@ -46,69 +46,82 @@ const URLList = ({ actionProvider, setState }) => {
   }, []);
 
   return (
-    <Box sx={{ ml: 6, width: { xs: "85%", md: "75%" } }}>
-      {data.map((d) => {
-        return (
-          <Box
-            key={`${d.url}+${d.id}`}
-            sx={{
-              border: 1,
-              my: 1,
-              p: 1,
-              borderRadius: 1,
-              display: "flex",
-              flexDirection: { xs: "column", md: "row" },
-              justifyContent: "space-between",
-            }}
-          >
-            <Stack direction="row" spacing={1}>
-              <Chip
-                color={CHIP_COLOR[d.httpMethod]}
-                variant="filled"
-                label={d.httpMethod}
-                size="small"
-              />
-              <Typography sx={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-                {d.description} (<a href={d.url}>{d.url}</a>)
-              </Typography>
-            </Stack>
-            <Stack
-              direction="row"
-              spacing={1}
-              sx={{ ml: { xs: 5 }, mt: { xs: 1, md: 0 } }}
-            >
-              <div>
-                <Button
-                  size="small"
-                  variant="outlined"
-                  onClick={() => currentStatus(d)}
-                >
-                  Current Status
-                </Button>
-              </div>
-              <div>
-                <Button
-                  size="small"
-                  variant="outlined"
-                  onClick={() => statistics(d)}
-                >
-                  View Statistics
-                </Button>
-              </div>
-              <div>
-                <Button
-                  size="small"
-                  variant="outlined"
-                  onClick={() => details(d)}
-                >
-                  View Details
-                </Button>
-              </div>
-            </Stack>
+    <>
+      {data.length === 0 ? (
+        <>
+          <Box sx={{ ml: 6, mb: 1 }}>
+            No existing URLs to monitor. Please enter new URL.
           </Box>
-        );
-      })}
-    </Box>
+          <MonitorNewUrlForm />
+        </>
+      ) : (
+        <Box sx={{ ml: 6, width: { xs: "85%", md: "75%" } }}>
+          {data.map((d) => {
+            return (
+              <Box
+                key={`${d.url}+${d.id}`}
+                sx={{
+                  border: 1,
+                  my: 1,
+                  p: 1,
+                  borderRadius: 1,
+                  display: "flex",
+                  flexDirection: { xs: "column", md: "row" },
+                  justifyContent: "space-between",
+                }}
+              >
+                <Stack direction="row" spacing={1}>
+                  <Chip
+                    color={CHIP_COLOR[d.httpMethod]}
+                    variant="filled"
+                    label={d.httpMethod}
+                    size="small"
+                  />
+                  <Typography
+                    sx={{ overflow: "hidden", textOverflow: "ellipsis" }}
+                  >
+                    {d.description} (<a href={d.url}>{d.url}</a>)
+                  </Typography>
+                </Stack>
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  sx={{ ml: { xs: 5 }, mt: { xs: 1, md: 0 } }}
+                >
+                  <div>
+                    <Button
+                      size="small"
+                      variant="outlined"
+                      onClick={() => currentStatus(d)}
+                    >
+                      Current Status
+                    </Button>
+                  </div>
+                  <div>
+                    <Button
+                      size="small"
+                      variant="outlined"
+                      onClick={() => statistics(d)}
+                    >
+                      View Statistics
+                    </Button>
+                  </div>
+                  <div>
+                    <Button
+                      size="small"
+                      variant="outlined"
+                      onClick={() => details(d)}
+                    >
+                      View Details
+                    </Button>
+                  </div>
+                </Stack>
+              </Box>
+            );
+          })}
+        </Box>
+      )}
+    </>
   );
 };
 

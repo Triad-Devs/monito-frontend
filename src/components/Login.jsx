@@ -45,7 +45,8 @@ const Login = ({ actionProvider }) => {
         .then((res) => {
           console.log(res);
           localStorage.setItem("userData", JSON.stringify(res.data));
-          actionProvider.postLogin(res);
+          window.location.reload();
+          // actionProvider.postLogin(res);
         })
         .catch((err) => {
           actionProvider.postLogin(err);
