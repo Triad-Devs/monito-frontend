@@ -50,7 +50,7 @@ class ActionProvider {
       );
     } else {
       postLoginMessage = this.createChatbotMessage(
-        `OOPS! I met an error please try again.`,
+        `Invalid Credentials! Please try again.`,
         { widget: "Login" }
       );
     }
