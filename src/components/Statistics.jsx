@@ -76,7 +76,11 @@ const Statistics = ({ statisticsData }) => {
           <a href={data.traffic_graph_url} target="_blank" rel="noreferrer">
             <img width={375} src={data.traffic_graph_url} alt="Traffic Graph" />
           </a>
-          <a href={data.traffic_graph_url} target="_blank" rel="noreferrer">
+          <a
+            href={data.response_time_graph_url}
+            target="_blank"
+            rel="noreferrer"
+          >
             <img
               width={375}
               src={data.response_time_graph_url}
