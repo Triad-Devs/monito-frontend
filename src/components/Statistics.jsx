@@ -73,12 +73,16 @@ const Statistics = ({ statisticsData }) => {
               );
             })}
           </Box>
-          <img width={375} src={data.traffic_graph_url} alt="Traffic Graph" />
-          <img
-            width={375}
-            src={data.response_time_graph_url}
-            alt="Response Time Graph"
-          />
+          <a href={data.traffic_graph_url} target="_blank" rel="noreferrer">
+            <img width={375} src={data.traffic_graph_url} alt="Traffic Graph" />
+          </a>
+          <a href={data.traffic_graph_url} target="_blank" rel="noreferrer">
+            <img
+              width={375}
+              src={data.response_time_graph_url}
+              alt="Response Time Graph"
+            />
+          </a>
           {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
         </>
       ) : (
