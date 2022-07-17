@@ -126,12 +126,14 @@ const Signup = ({ actionProvider }) => {
           size="small"
           name="password"
           label="Password"
-          sx={{ mr: 2, ml: 1 }}
+          sx={{ mr: 1, ml: 1 }}
           error={passError}
         />
-        <Button type="submit" sx={{ mt: 0.2 }} variant="contained">
-          Submit
-        </Button>
+        <Box sx={{ my: 1, ml: 1 }}>
+          <Button type="submit" variant="contained">
+            Submit
+          </Button>
+        </Box>
       </Box>
     </Box>
   );

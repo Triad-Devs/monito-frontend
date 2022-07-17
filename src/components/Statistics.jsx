@@ -38,7 +38,7 @@ const Statistics = ({ statisticsData }) => {
           </div>
           <div>
             <b>Average Bytes Transferred/day</b>:{" "}
-            {data.avg_bytes_transferred_per_day}
+            {data.avg_bytes_transferred_per_day.toFixed(3)}
           </div>
           <p>
             <b>Daily Statistics</b>:
