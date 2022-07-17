@@ -111,41 +111,6 @@ const MonitorNewUrlForm = ({ actionProvider }) => {
         sx={{ mr: 2, mb: 1 }}
         fullWidth
       />
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          my: 2,
-          width: "100%",
-        }}
-      >
-        <FormControl sx={{ mr: 1, minWidth: 100 }} size="small">
-          <InputLabel id="method">Method</InputLabel>
-          <Select
-            labelId="method"
-            id="method"
-            value={httpMethod}
-            label="Method"
-            onChange={handleHttpMethodChange}
-          >
-            {REQUEST_VERBS.map((verb) => (
-              <MenuItem key={verb} value={verb}>
-                {verb}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <TextField
-          required
-          size="small"
-          name="url"
-          label="URL"
-          sx={{ ml: 1 }}
-          error={urlError}
-          fullWidth
-        />
-      </Box>
-      {urlError && <div>Please enter a valid URL!</div>}
       <FormControlLabel
         control={
           <Checkbox
@@ -154,16 +119,6 @@ const MonitorNewUrlForm = ({ actionProvider }) => {
           />
         }
         label="Is the URL an API?"
-      />
-      <FormControlLabel
-        control={
-          <Checkbox
-            checked={authReq}
-            onChange={(e) => setAuthReq(e.target.checked)}
-          />
-        }
-        label="Authentication Required?"
-        sx={{ my: 0.5 }}
       />
       <FormControl sx={{ mr: 1, minWidth: 120 }} size="small">
         <InputLabel id="repeat-after">Repeat After</InputLabel>
@@ -181,6 +136,59 @@ const MonitorNewUrlForm = ({ actionProvider }) => {
           ))}
         </Select>
       </FormControl>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          my: 2,
+          width: "100%",
+        }}
+      >
+        <FormControl sx={{ mr: 1, minWidth: 100 }} size="small">
+          <InputLabel id="method">Method</InputLabel>
+          <Select
+            labelId="method"
+            id="method"
+            value={httpMethod}
+            label="Method"
+            onChange={handleHttpMethodChange}
+          >
+            {isApi ? (
+              REQUEST_VERBS.map((verb) => (
+                <MenuItem key={verb} value={verb}>
+                  {verb}
+                </MenuItem>
+              ))
+            ) : (
+              <MenuItem key="GET" value="GET">
+                GET
+              </MenuItem>
+            )}
+          </Select>
+        </FormControl>
+        <TextField
+          required
+          size="small"
+          name="url"
+          label="URL"
+          sx={{ ml: 1 }}
+          error={urlError}
+          fullWidth
+        />
+      </Box>
+      {urlError && <div>Please enter a valid URL!</div>}
+      {isApi && (
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={authReq}
+              onChange={(e) => setAuthReq(e.target.checked)}
+            />
+          }
+          label="Authentication Required?"
+          sx={{ my: 0.5 }}
+        />
+      )}
       {authReq && (
         <TextField
           required
@@ -188,7 +196,6 @@ const MonitorNewUrlForm = ({ actionProvider }) => {
           name="bearer"
           label="Bearer token"
           sx={{ mr: 2, my: 1 }}
-          // error={unameError}
           fullWidth
         />
       )}
