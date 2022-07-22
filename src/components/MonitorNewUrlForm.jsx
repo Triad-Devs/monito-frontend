@@ -23,6 +23,7 @@ const MonitorNewUrlForm = ({ actionProvider }) => {
   const [httpMethod, setHttpMethod] = useState("GET");
   const [editorValue, setEditorValue] = useState("{}");
   const [editorError, setEditorError] = useState(false);
+  const [alertError, setAlertError] = useState(false);
 
   const handleHttpMethodChange = (event) => {
     setHttpMethod(event.target.value);
@@ -42,11 +43,13 @@ const MonitorNewUrlForm = ({ actionProvider }) => {
 
     setUrlError(false);
     setEditorError(false);
+    setAlertError(true);
 
     const data = new FormData(e.currentTarget);
 
     const formData = {
       description: data.get("description").trim(),
+      alertThreshold: data.get("alertThreshold").trim(),
       bearer: authReq ? data.get("bearer").trim() : "",
       url: data.get("url").trim(),
       JSONbody: editorValue,
@@ -65,6 +68,11 @@ const MonitorNewUrlForm = ({ actionProvider }) => {
     if (!urlRegex.test(formData.url)) {
       submit = false;
       setUrlError(true);
+    }
+
+    if (!formData.alertThreshold || formData.alertThreshold === 0) {
+      submit = false;
+      setAlertError(true);
     }
 
     try {
@@ -136,6 +144,15 @@ const MonitorNewUrlForm = ({ actionProvider }) => {
           ))}
         </Select>
       </FormControl>
+      <TextField
+        required
+        size="small"
+        name="alertThreshold"
+        label="Error Threshold"
+        type="number"
+        error={alertError}
+        sx={{ mr: 2, mb: 1 }}
+      />
       <Box
         sx={{
           display: "flex",
