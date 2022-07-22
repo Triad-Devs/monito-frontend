@@ -51,80 +51,16 @@ const Statistics = ({ statisticsData }) => {
         <Box sx={{ ml: 6 }}>
             {data ? (
                 <>
-                    <TableContainer>
-                        <Table
-                            sx={{ maxWidth: 700 }}
-                            size="small"
-                            aria-label="a dense table"
-                        >
-                            <TableBody>
-                                <TableRow>
-                                    <StyledTableCell sx={{ border: 1 }}>
-                                        <b>Total Requests</b>
-                                    </StyledTableCell>
-                                    <StyledTableCell sx={{ border: 1 }}>
-                                        {data.total_requests}
-                                    </StyledTableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <StyledTableCell sx={{ border: 1 }}>
-                                        <b>Successful Requests</b>
-                                    </StyledTableCell>
-                                    <StyledTableCell sx={{ border: 1 }}>
-                                        {data.success_requests}
-                                    </StyledTableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <StyledTableCell sx={{ border: 1 }}>
-                                        <b>Failed Requests</b>
-                                    </StyledTableCell>
-                                    <StyledTableCell sx={{ border: 1 }}>
-                                        {data.failed_requests}
-                                    </StyledTableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <StyledTableCell sx={{ border: 1 }}>
-                                        <b>Success Rate(%)</b>
-                                    </StyledTableCell>
-                                    <StyledTableCell sx={{ border: 1 }}>
-                                        {data["success_rate(%)"].toFixed(2)}
-                                    </StyledTableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <StyledTableCell sx={{ border: 1 }}>
-                                        <b>Error Rate(%)</b>
-                                    </StyledTableCell>
-                                    <StyledTableCell sx={{ border: 1 }}>
-                                        {data["error_rate(%)"].toFixed(2)}
-                                    </StyledTableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <StyledTableCell sx={{ border: 1 }}>
-                                        <b>Average Response Time(seconds)</b>
-                                    </StyledTableCell>
-                                    <StyledTableCell sx={{ border: 1 }}>
-                                        {data["avg_response_time(s)"].toFixed(3)}
-                                    </StyledTableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <StyledTableCell sx={{ border: 1 }}>
-                                        <b>Total bytes transferred</b>
-                                    </StyledTableCell>
-                                    <StyledTableCell sx={{ border: 1 }}>
-                                        {data.total_bytes_transferred}
-                                    </StyledTableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <StyledTableCell sx={{ border: 1 }}>
-                                        <b>Average Bytes Transferred/day</b>
-                                    </StyledTableCell>
-                                    <StyledTableCell sx={{ border: 1 }}>
-                                        {data.avg_bytes_transferred_per_day.toFixed(3)}
-                                    </StyledTableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
+                    <Box sx={{mt: 0, p: 1, color: "#ffffff", backgroundColor: "#1f1b24", borderRadius: "5px", maxWidth: { xs: "80vw", md: "50vw" }}}>
+                        Total Requests: {data.total_requests}<br/>
+                        Successful Requests: {data.success_requests}<br/>
+                        Failed Requests: {data.failed_requests}<br/>
+                        Success Rate(%): {data["success_rate(%)"].toFixed(2)}<br/>
+                        Error Rate(%): {data["error_rate(%)"].toFixed(2)}<br/>
+                        Average Response Time(seconds):{" "}{data["avg_response_time(s)"].toFixed(3)}<br/>
+                        Total bytes transferred: {data.total_bytes_transferred}<br/>
+                        Average Bytes Transferred/day:{" "}{data.avg_bytes_transferred_per_day.toFixed(3)}<br/>
+                    </Box>
                     <Box sx={{ mt: 4, mb: 1 }}>
                         <b>Daily Statistics</b>:
                     </Box>
@@ -178,7 +114,7 @@ const Statistics = ({ statisticsData }) => {
                         </TableContainer>
                     </Box>
                     <Box sx={{ mt: 3, mb: 4, display: "flex", flexWrap: "wrap" }}>
-                        <Paper elevation={4} sx={{ width: 308, pl: 1}}>
+                        <Paper elevation={4} sx={{ width: 308, pl: 1 }}>
                             <a
                                 href={data.traffic_graph_url}
                                 target="_blank"
@@ -190,7 +126,7 @@ const Statistics = ({ statisticsData }) => {
                                 />
                             </a>
                         </Paper>
-                        <Paper elevation={4} sx={{ width: 308, pl: 1, ml: {xs:0, md:3}, mt: {xs:3, sm:0}}}>
+                        <Paper elevation={4} sx={{ width: 308, pl: 1, ml: { xs: 0, md: 3 }, mt: { xs: 3, sm: 0 } }}>
                             <a
                                 href={data.response_time_graph_url}
                                 target="_blank"

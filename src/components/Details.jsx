@@ -10,86 +10,31 @@ import TableRow from "@mui/material/TableRow";
 import Box from "@mui/material/Box";
 
 const Details = ({ detailsData }) => {
-  const [data, setData] = useState("Processing request...");
+    const [data, setData] = useState("Processing request...");
 
-  useEffect(() => {
-    getDetails(detailsData.id).then((d) => setData(d.data));
-  }, []);
+    useEffect(() => {
+        getDetails(detailsData.id).then((d) => setData(d.data));
+    }, []);
 
-  return (
-    <Box sx={{ ml: 6 }}>
-      <TableContainer>
-        <Table sx={{ maxWidth: 700 }} size="small" aria-label="a dense table">
-          <TableBody>
-            <TableRow>
-              <TableCell sx={{ border: 1 }}>
-                <b>Description</b>
-              </TableCell>
-              <TableCell sx={{ border: 1 }}>{data.description}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell sx={{ border: 1 }}>
-                <b>HTTP Method</b>
-              </TableCell>
-              <TableCell sx={{ border: 1 }}>{data.httpMethod}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell sx={{ border: 1 }}>
-                <b>URL</b>
-              </TableCell>
-              <TableCell sx={{ border: 1 }}>
-                <a href={data.url}>{data.url}</a>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell sx={{ border: 1 }}>
-                <b>Is the URL an API</b>
-              </TableCell>
-              <TableCell sx={{ border: 1 }}>
-                {data.isAPI ? "Yes" : "No"}
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell sx={{ border: 1 }}>
-                <b>Authentication Required</b>
-              </TableCell>
-              <TableCell sx={{ border: 1 }}>
-                {data.authReq ? "Yes" : "No"}
-              </TableCell>
-            </TableRow>
-            {data.authReq && (
-              <TableRow>
-                <TableCell sx={{ border: 1 }}>
-                  <b>Bearer Token</b>
-                </TableCell>
-                <TableCell sx={{ border: 1 }}>{data.bearer}</TableCell>
-              </TableRow>
+    return (
+        <Box sx={{ ml: 6, mt: 0, p: 1, color: "#ffffff", backgroundColor: "#1f1b24", borderRadius: "5px", maxWidth: { xs: "80vw", md: "50vw" }}}>
+            Description: {data.description} <br />
+            HTTP Method: {data.httpMethod} <br />
+            URL: <a href={data.url}>{data.url}</a> <br />
+            Is the URL an API: {data.isAPI ? "Yes" : "No"} <br />
+            Authentication Required: {data.authReq ? "Yes" : "No"} <br />
+            {!data.authReq && (
+                <>Bearer Token: {data.bearer}<br /></>
             )}
-            <TableRow>
-              <TableCell sx={{ border: 1 }}>
-                <b>Repeat After</b>
-              </TableCell>
-              <TableCell sx={{ border: 1 }}>
-                {getKeyByValue(REPEAT_AFTER, data.repeatAfter)}
-              </TableCell>
-            </TableRow>
+            Repeat After: {getKeyByValue(REPEAT_AFTER, data.repeatAfter)}<br />
             {["PUT", "POST", "PATCH"].includes(data.httpMethod) && (
-              <>
-                <TableRow>
-                  <TableCell sx={{ border: 1 }}>
-                    <b>JSON Payload</b>
-                  </TableCell>
-                  <TableCell sx={{ border: 1 }}>
-                    <pre>{data.JSONbody}</pre>
-                  </TableCell>
-                </TableRow>
-              </>
+                <>
+                    JSON Payload:<br />
+                    <pre>{JSON.stringify(data.JSONbody, null, 2)}</pre>
+                </>
             )}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Box>
-  );
+        </Box>
+    );
 };
 
 export default Details;
