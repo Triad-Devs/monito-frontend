@@ -233,9 +233,9 @@ const URLList = ({ actionProvider, setState }) => {
                         <Button
                           size="small"
                           variant="outlined"
-                          onClick={() => handleClickOpen("Audit Report", d.url)}
+                          onClick={() => handleClickOpen("Security Report", d.url)}
                         >
-                          Audit Report
+                          Security Report
                         </Button>
                       </div>
                       <div>
@@ -244,13 +244,13 @@ const URLList = ({ actionProvider, setState }) => {
                           variant="outlined"
                           onClick={() =>
                             handleLightHouseClickOpen(
-                              "Security Report",
+                              "Audit Report",
                               d.url,
                               d.id
                             )
                           }
                         >
-                          Security Report
+                          Audit Report
                         </Button>
                       </div>
                     </Stack>

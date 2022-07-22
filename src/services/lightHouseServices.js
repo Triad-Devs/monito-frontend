@@ -15,7 +15,7 @@ const getLightHouseUrl = async (data) => {
     reqData
   );
   console.log({ lighthouse: resData });
-  return resData;
+  return resData.data.reportURL;
 };
 
 export { getLightHouseUrl };
