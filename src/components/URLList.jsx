@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, forwardRef } from "react";
 import { CHIP_COLOR } from "../utils";
 import { fetchUrls } from "../services/monitorServices";
 import MonitorNewUrlForm from "./MonitorNewUrlForm";
@@ -8,8 +8,40 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
+import Dialog from "@mui/material/Dialog";
+import ListItemText from "@mui/material/ListItemText";
+import ListItem from "@mui/material/ListItem";
+import List from "@mui/material/List";
+import Divider from "@mui/material/Divider";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import Slide from "@mui/material/Slide";
+import Iframe from "react-iframe";
+
+const Transition = forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 const URLList = ({ actionProvider, setState }) => {
-  const [data, setData] = useState([]);
+  const [apis, setApis] = useState([]);
+  const [websites, setWebsites] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [modalHeader, setModalHeader] = useState("");
+  const [iframeLink, setIframeLink] = useState("");
+
+  const handleClickOpen = (headerText, link) => {
+    setOpen(true);
+    setModalHeader(headerText);
+    setIframeLink(link);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setModalHeader("");
+    setIframeLink("");
+  };
 
   const currentStatus = (reqData) => {
     setState((prev) => ({
@@ -41,13 +73,17 @@ const URLList = ({ actionProvider, setState }) => {
   useEffect(() => {
     fetchUrls().then((d) => {
       console.log(d);
-      setData(d);
+      const onlyApis = d.filter((l) => l.isAPI);
+      const onlyWebsites = d.filter((l) => !l.isAPI);
+      console.log({ onlyApis, onlyWebsites });
+      setApis(onlyApis);
+      setWebsites(onlyWebsites);
     });
   }, []);
 
   return (
     <>
-      {data.length === 0 ? (
+      {apis.length === 0 ? (
         <>
           <Box sx={{ ml: 6, mb: 1 }}>
             No existing URLs to monitor. Please enter new URL.
@@ -55,71 +91,201 @@ const URLList = ({ actionProvider, setState }) => {
           <MonitorNewUrlForm />
         </>
       ) : (
-        <Box sx={{ ml: 6, width: { xs: "85%", md: "75%" } }}>
-          {data.map((d) => {
-            return (
-              <Box
-                key={`${d.url}+${d.id}`}
-                sx={{
-                  border: 1,
-                  my: 1,
-                  p: 1,
-                  borderRadius: 1,
-                  display: "flex",
-                  flexDirection: { xs: "column", md: "row" },
-                  justifyContent: "space-between",
-                }}
-              >
-                <Stack direction="row" spacing={1}>
-                  <Chip
-                    color={CHIP_COLOR[d.httpMethod]}
-                    variant="filled"
-                    label={d.httpMethod}
-                    size="small"
-                  />
-                  <Typography
-                    sx={{ overflow: "hidden", textOverflow: "ellipsis" }}
-                  >
-                    {d.description} (<a href={d.url}>{d.url}</a>)
-                  </Typography>
-                </Stack>
-                <Stack
-                  direction="row"
-                  spacing={1}
-                  sx={{ ml: { xs: 5 }, mt: { xs: 1, md: 0 } }}
+        <>
+          <Box sx={{ ml: 6, width: { xs: "85%", md: "75%" } }}>
+            <div>
+              <b>API endpoints</b>
+            </div>
+            {apis.map((d) => {
+              return (
+                <Box
+                  key={`${d.url}+${d.id}`}
+                  sx={{
+                    border: 1,
+                    my: 1,
+                    p: 1,
+                    borderRadius: 1,
+                    display: "flex",
+                    flexDirection: { xs: "column", md: "row" },
+                    justifyContent: "space-between",
+                  }}
                 >
-                  <div>
-                    <Button
+                  <Stack direction="row" spacing={1}>
+                    <Chip
+                      color={CHIP_COLOR[d.httpMethod]}
+                      variant="filled"
+                      label={d.httpMethod}
                       size="small"
-                      variant="outlined"
-                      onClick={() => currentStatus(d)}
+                    />
+                    <Typography
+                      sx={{ overflow: "hidden", textOverflow: "ellipsis" }}
                     >
-                      Current Status
-                    </Button>
-                  </div>
-                  <div>
-                    <Button
+                      {d.description} (<a href={d.url}>{d.url}</a>)
+                    </Typography>
+                  </Stack>
+                  <Stack
+                    direction="row"
+                    spacing={1}
+                    sx={{ ml: { xs: 5 }, mt: { xs: 1, md: 0 } }}
+                  >
+                    <div>
+                      <Button
+                        size="small"
+                        variant="outlined"
+                        onClick={() => currentStatus(d)}
+                      >
+                        Current Status
+                      </Button>
+                    </div>
+                    <div>
+                      <Button
+                        size="small"
+                        variant="outlined"
+                        onClick={() => statistics(d)}
+                      >
+                        View Statistics
+                      </Button>
+                    </div>
+                    <div>
+                      <Button
+                        size="small"
+                        variant="outlined"
+                        onClick={() => details(d)}
+                      >
+                        View Details
+                      </Button>
+                    </div>
+                  </Stack>
+                </Box>
+              );
+            })}
+          </Box>
+          <Box sx={{ ml: 6, width: { xs: "85%", md: "75%" } }}>
+            <div>
+              <b>Webpages</b>
+            </div>
+            {websites.map((d) => {
+              return (
+                <Box
+                  key={`${d.url}+${d.id}`}
+                  sx={{
+                    border: 1,
+                    my: 1,
+                    p: 1,
+                    borderRadius: 1,
+                    display: "flex",
+                    flexDirection: { xs: "column", md: "row" },
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Stack direction="row" spacing={1}>
+                    <Chip
+                      color={CHIP_COLOR[d.httpMethod]}
+                      variant="filled"
+                      label={d.httpMethod}
                       size="small"
-                      variant="outlined"
-                      onClick={() => statistics(d)}
+                    />
+                    <Typography
+                      sx={{ overflow: "hidden", textOverflow: "ellipsis" }}
                     >
-                      View Statistics
-                    </Button>
-                  </div>
-                  <div>
-                    <Button
-                      size="small"
-                      variant="outlined"
-                      onClick={() => details(d)}
-                    >
-                      View Details
-                    </Button>
-                  </div>
-                </Stack>
-              </Box>
-            );
-          })}
-        </Box>
+                      {d.description} (<a href={d.url}>{d.url}</a>)
+                    </Typography>
+                  </Stack>
+                  <Stack
+                    direction="column"
+                    spacing={1}
+                    sx={{ ml: { xs: 5 }, mt: { xs: 1, md: 0 } }}
+                  >
+                    <Stack direction="row" spacing={1}>
+                      <div>
+                        <Button
+                          size="small"
+                          variant="outlined"
+                          onClick={() => currentStatus(d)}
+                        >
+                          Current Status
+                        </Button>
+                      </div>
+                      <div>
+                        <Button
+                          size="small"
+                          variant="outlined"
+                          onClick={() => statistics(d)}
+                        >
+                          View Statistics
+                        </Button>
+                      </div>
+                      <div>
+                        <Button
+                          size="small"
+                          variant="outlined"
+                          onClick={() => details(d)}
+                        >
+                          View Details
+                        </Button>
+                      </div>
+                    </Stack>
+                    <Stack direction="row" spacing={1}>
+                      <div>
+                        <Button
+                          size="small"
+                          variant="outlined"
+                          onClick={() => handleClickOpen("Audit Report", d.url)}
+                        >
+                          Audit Report
+                        </Button>
+                      </div>
+                      <div>
+                        <Button
+                          size="small"
+                          variant="outlined"
+                          onClick={() =>
+                            handleClickOpen("Security Report", d.url)
+                          }
+                        >
+                          Security Report
+                        </Button>
+                      </div>
+                    </Stack>
+                  </Stack>
+                  <Dialog
+                    fullScreen
+                    open={open}
+                    onClose={handleClose}
+                    TransitionComponent={Transition}
+                  >
+                    <AppBar sx={{ position: "relative" }}>
+                      <Toolbar>
+                        <Typography
+                          sx={{ ml: 2, flex: 1 }}
+                          variant="h6"
+                          component="div"
+                        >
+                          {modalHeader}
+                        </Typography>
+                        <IconButton
+                          edge="start"
+                          color="inherit"
+                          onClick={handleClose}
+                          aria-label="close"
+                        >
+                          <CloseIcon />
+                        </IconButton>
+                      </Toolbar>
+                    </AppBar>
+                    <Iframe
+                      url="https://blog.logrocket.com/best-practices-react-iframes/"
+                      width="100%"
+                      height="4500px"
+                      scrolling="yes"
+                      loading="lazy"
+                    />
+                  </Dialog>
+                </Box>
+              );
+            })}
+          </Box>
+        </>
       )}
     </>
   );
