@@ -27,8 +27,9 @@ const URLList = ({ actionProvider, setState }) => {
   const [modalHeader, setModalHeader] = useState("");
   const [iframeLink, setIframeLink] = useState("");
 
-  const handleLightHouseClickOpen = async (headerText, url, id) => {
-    const lightHouseUrl = await getLightHouseUrl({ id, url });
+  const handleLightHouseClickOpen = async (headerText, url) => {
+    const userId = JSON.parse(localStorage.getItem("userData")).userId;
+    const lightHouseUrl = await getLightHouseUrl({ id: userId, url });
     setOpen(true);
     setModalHeader(headerText);
     setIframeLink(lightHouseUrl);
@@ -233,7 +234,9 @@ const URLList = ({ actionProvider, setState }) => {
                         <Button
                           size="small"
                           variant="outlined"
-                          onClick={() => handleClickOpen("Security Report", d.url)}
+                          onClick={() =>
+                            handleClickOpen("Security Report", d.url)
+                          }
                         >
                           Security Report
                         </Button>
@@ -243,11 +246,7 @@ const URLList = ({ actionProvider, setState }) => {
                           size="small"
                           variant="outlined"
                           onClick={() =>
-                            handleLightHouseClickOpen(
-                              "Audit Report",
-                              d.url,
-                              d.id
-                            )
+                            handleLightHouseClickOpen("Audit Report", d.url)
                           }
                         >
                           Audit Report
