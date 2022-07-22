@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
 import { getStatistics } from "../services/monitorServices";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableRow from "@mui/material/TableRow";
 
 import Box from "@mui/material/Box";
 
@@ -14,67 +19,140 @@ const Statistics = ({ statisticsData }) => {
     <Box sx={{ ml: 6 }}>
       {data ? (
         <>
-          <div>
-            <b>Total Requests</b>: {data.total_requests}
-          </div>
-          <div>
-            <b>Successful Requests</b>: {data.success_requests}
-          </div>
-          <div>
-            <b>Failed Requests</b>: {data.failed_requests}
-          </div>
-          <div>
-            <b>Success Rate(%)</b>: {data["success_rate(%)"].toFixed(2)}
-          </div>
-          <div>
-            <b>Error Rate(%)</b>: {data["error_rate(%)"].toFixed(2)}
-          </div>
-          <div>
-            <b>Average Response Time(seconds)</b>:{" "}
-            {data["avg_response_time(s)"].toFixed(3)}
-          </div>
-          <div>
-            <b>Total bytes transferred</b>: {data.total_bytes_transferred}
-          </div>
-          <div>
-            <b>Average Bytes Transferred/day</b>:{" "}
-            {data.avg_bytes_transferred_per_day.toFixed(3)}
-          </div>
+          <TableContainer>
+            <Table
+              sx={{ maxWidth: 700 }}
+              size="small"
+              aria-label="a dense table"
+            >
+              <TableBody>
+                <TableRow>
+                  <TableCell sx={{ border: 1 }}>
+                    <b>Total Requests</b>
+                  </TableCell>
+                  <TableCell sx={{ border: 1 }}>
+                    {data.total_requests}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell sx={{ border: 1 }}>
+                    <b>Successful Requests</b>
+                  </TableCell>
+                  <TableCell sx={{ border: 1 }}>
+                    {data.success_requests}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell sx={{ border: 1 }}>
+                    <b>Failed Requests</b>
+                  </TableCell>
+                  <TableCell sx={{ border: 1 }}>
+                    {data.failed_requests}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell sx={{ border: 1 }}>
+                    <b>Success Rate(%)</b>
+                  </TableCell>
+                  <TableCell sx={{ border: 1 }}>
+                    {data["success_rate(%)"].toFixed(2)}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell sx={{ border: 1 }}>
+                    <b>Error Rate(%)</b>
+                  </TableCell>
+                  <TableCell sx={{ border: 1 }}>
+                    {data["error_rate(%)"].toFixed(2)}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell sx={{ border: 1 }}>
+                    <b>Average Response Time(seconds)</b>
+                  </TableCell>
+                  <TableCell sx={{ border: 1 }}>
+                    {data["avg_response_time(s)"].toFixed(3)}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell sx={{ border: 1 }}>
+                    <b>Total bytes transferred</b>
+                  </TableCell>
+                  <TableCell sx={{ border: 1 }}>
+                    {data.total_bytes_transferred}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell sx={{ border: 1 }}>
+                    <b>Average Bytes Transferred/day</b>
+                  </TableCell>
+                  <TableCell sx={{ border: 1 }}>
+                    {data.avg_bytes_transferred_per_day.toFixed(3)}
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
           <p>
             <b>Daily Statistics</b>:
           </p>
-          <Box sx={{ ml: 2 }}>
+          <Box>
             {data.per_day_stats.map((d) => {
               return (
                 <div key={d.day}>
-                  <div>
-                    <b>
-                      {new Date(d.day).toLocaleDateString("en-IN", {
-                        year: "numeric",
-                        month: "2-digit",
-                        day: "2-digit",
-                      })}
-                    </b>
-                  </div>
-                  <Box sx={{ ml: 2, mb: 2 }}>
-                    <div>
-                      <b>Number of Requests</b>: {d.count}
-                    </div>
-                    <div>
-                      <b>Total bytes transferred</b>:{" "}
-                      {d.total_bytes_transferred.toFixed(2)}
-                    </div>
-                    <div>
-                      <b>Average Bytes Transferred</b>:{" "}
-                      {d.avg_bytes_transferred.toFixed(2)}
-                    </div>
-                  </Box>
+                  <TableContainer>
+                    <Table
+                      sx={{ maxWidth: 700 }}
+                      size="small"
+                      aria-label="a dense table"
+                    >
+                      <TableBody>
+                        <TableRow>
+                          <TableCell sx={{ border: 1 }}>
+                            <b>
+                              {new Date(d.day).toLocaleDateString("en-IN", {
+                                year: "numeric",
+                                month: "2-digit",
+                                day: "2-digit",
+                              })}
+                            </b>
+                          </TableCell>
+                          <TableCell sx={{ border: 1 }}>
+                            <TableRow>
+                              <TableCell sx={{ border: 1 }}>
+                                <b>Number of Requests</b>
+                              </TableCell>
+                              <TableCell sx={{ border: 1 }}>
+                                {d.count}
+                              </TableCell>
+                            </TableRow>
+                            <TableRow>
+                              <TableCell sx={{ border: 1 }}>
+                                <b>Total bytes transferred</b>
+                              </TableCell>
+                              <TableCell sx={{ border: 1 }}>
+                                {d.total_bytes_transferred.toFixed(2)}
+                              </TableCell>
+                            </TableRow>
+                            <TableRow>
+                              <TableCell sx={{ border: 1 }}>
+                                <b>Average Bytes Transferred</b>
+                              </TableCell>
+                              <TableCell sx={{ border: 1 }}>
+                                {d.avg_bytes_transferred.toFixed(2)}
+                              </TableCell>
+                            </TableRow>
+                          </TableCell>
+                        </TableRow>
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
                 </div>
               );
             })}
           </Box>
           <a href={data.traffic_graph_url} target="_blank" rel="noreferrer">
-            <img width={375} src={data.traffic_graph_url} alt="Traffic Graph" />
+            <img width={300} src={data.traffic_graph_url} alt="Traffic Graph" />
           </a>
           <a
             href={data.response_time_graph_url}
@@ -82,7 +160,7 @@ const Statistics = ({ statisticsData }) => {
             rel="noreferrer"
           >
             <img
-              width={375}
+              width={300}
               src={data.response_time_graph_url}
               alt="Response Time Graph"
             />
