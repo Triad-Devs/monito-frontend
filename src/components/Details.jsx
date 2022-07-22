@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getDetails } from "../services/monitorServices";
 import { REPEAT_AFTER, getKeyByValue } from "../utils";
 import Editor from "@monaco-editor/react";
+import Anchor from "./Anchor";
 
 import Box from "@mui/material/Box";
 
@@ -26,10 +27,11 @@ const Details = ({ detailsData }) => {
     >
       Description: {data.description} <br />
       HTTP Method: {data.httpMethod} <br />
-      URL: <a href={data.url}>{data.url}</a> <br />
+      URL: <Anchor url={data.url} />
+      <br />
       Is the URL an API: {data.isAPI ? "Yes" : "No"} <br />
       Authentication Required: {data.authReq ? "Yes" : "No"} <br />
-      {!data.authReq && (
+      {data.authReq && (
         <>
           Bearer Token: {data.bearer}
           <br />
@@ -42,6 +44,7 @@ const Details = ({ detailsData }) => {
           JSON Payload:
           <Editor
             height="20vh"
+            theme="vs-dark"
             defaultLanguage="json"
             defaultValue={data.JSONbody}
           />

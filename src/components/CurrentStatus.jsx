@@ -42,6 +42,7 @@ const CurrentStatus = ({ currentStatusData }) => {
               JSON Response:
               <Editor
                 height="20vh"
+                theme="vs-dark"
                 defaultLanguage="json"
                 defaultValue={JSON.stringify(data.jsonBody, null, 2)}
               />
