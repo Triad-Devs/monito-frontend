@@ -5,6 +5,7 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
+import TableHead from "@mui/material/TableHead";
 
 import Box from "@mui/material/Box";
 
@@ -97,59 +98,54 @@ const Statistics = ({ statisticsData }) => {
             <b>Daily Statistics</b>:
           </p>
           <Box>
-            {data.per_day_stats.map((d) => {
-              return (
-                <div key={d.day}>
-                  <TableContainer>
-                    <Table
-                      sx={{ maxWidth: 700 }}
-                      size="small"
-                      aria-label="a dense table"
-                    >
-                      <TableBody>
-                        <TableRow>
-                          <TableCell sx={{ border: 1 }}>
-                            <b>
-                              {new Date(d.day).toLocaleDateString("en-IN", {
-                                year: "numeric",
-                                month: "2-digit",
-                                day: "2-digit",
-                              })}
-                            </b>
-                          </TableCell>
-                          <TableCell sx={{ border: 1 }}>
-                            <TableRow>
-                              <TableCell sx={{ border: 1 }}>
-                                <b>Number of Requests</b>
-                              </TableCell>
-                              <TableCell sx={{ border: 1 }}>
-                                {d.count}
-                              </TableCell>
-                            </TableRow>
-                            <TableRow>
-                              <TableCell sx={{ border: 1 }}>
-                                <b>Total bytes transferred</b>
-                              </TableCell>
-                              <TableCell sx={{ border: 1 }}>
-                                {d.total_bytes_transferred.toFixed(2)}
-                              </TableCell>
-                            </TableRow>
-                            <TableRow>
-                              <TableCell sx={{ border: 1 }}>
-                                <b>Average Bytes Transferred</b>
-                              </TableCell>
-                              <TableCell sx={{ border: 1 }}>
-                                {d.avg_bytes_transferred.toFixed(2)}
-                              </TableCell>
-                            </TableRow>
-                          </TableCell>
-                        </TableRow>
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-                </div>
-              );
-            })}
+            <TableContainer>
+              <Table
+                sx={{ maxWidth: 700 }}
+                size="small"
+                aria-label="a dense table"
+              >
+                <TableHead>
+                  <TableRow>
+                    <TableCell sx={{ border: 1 }}>
+                      <b>Date</b>
+                    </TableCell>
+                    <TableCell sx={{ border: 1 }}>
+                      <b>Number of Requests</b>
+                    </TableCell>
+                    <TableCell sx={{ border: 1 }}>
+                      <b>Total bytes transferred</b>
+                    </TableCell>
+                    <TableCell sx={{ border: 1 }}>
+                      <b>Average Bytes Transferred</b>
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {data.per_day_stats.map((d) => {
+                    return (
+                      <TableRow key={d.day}>
+                        <TableCell sx={{ border: 1 }}>
+                          <b>
+                            {new Date(d.day).toLocaleDateString("en-IN", {
+                              year: "numeric",
+                              month: "2-digit",
+                              day: "2-digit",
+                            })}
+                          </b>
+                        </TableCell>
+                        <TableCell sx={{ border: 1 }}>{d.count}</TableCell>
+                        <TableCell sx={{ border: 1 }}>
+                          {d.total_bytes_transferred.toFixed(2)}
+                        </TableCell>
+                        <TableCell sx={{ border: 1 }}>
+                          {d.avg_bytes_transferred.toFixed(2)}
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </TableContainer>
           </Box>
           <a href={data.traffic_graph_url} target="_blank" rel="noreferrer">
             <img width={300} src={data.traffic_graph_url} alt="Traffic Graph" />
