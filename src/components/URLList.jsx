@@ -1,18 +1,14 @@
 import { useState, useEffect, forwardRef } from "react";
 import { CHIP_COLOR } from "../utils";
 import { fetchUrls } from "../services/monitorServices";
+import { getLightHouseUrl } from "../services/lightHouseServices";
 import MonitorNewUrlForm from "./MonitorNewUrlForm";
 import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-
 import Dialog from "@mui/material/Dialog";
-import ListItemText from "@mui/material/ListItemText";
-import ListItem from "@mui/material/ListItem";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -30,6 +26,13 @@ const URLList = ({ actionProvider, setState }) => {
   const [open, setOpen] = useState(false);
   const [modalHeader, setModalHeader] = useState("");
   const [iframeLink, setIframeLink] = useState("");
+
+  const handleLightHouseClickOpen = async (headerText, url, id) => {
+    const lightHouseUrl = await getLightHouseUrl({ id, url });
+    setOpen(true);
+    setModalHeader(headerText);
+    setIframeLink(lightHouseUrl);
+  };
 
   const handleClickOpen = (headerText, link) => {
     setOpen(true);
@@ -240,7 +243,11 @@ const URLList = ({ actionProvider, setState }) => {
                           size="small"
                           variant="outlined"
                           onClick={() =>
-                            handleClickOpen("Security Report", d.url)
+                            handleLightHouseClickOpen(
+                              "Security Report",
+                              d.url,
+                              d.id
+                            )
                           }
                         >
                           Security Report
@@ -274,7 +281,7 @@ const URLList = ({ actionProvider, setState }) => {
                       </Toolbar>
                     </AppBar>
                     <Iframe
-                      url="https://blog.logrocket.com/best-practices-react-iframes/"
+                      url={iframeLink}
                       width="100%"
                       height="4500px"
                       scrolling="yes"
