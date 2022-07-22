@@ -63,6 +63,7 @@ const MonitorNewUrlForm = ({ actionProvider }) => {
     console.log(formData);
 
     const urlRegex =
+      // eslint-disable-next-line no-useless-escape
       /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm;
 
     if (!urlRegex.test(formData.url)) {

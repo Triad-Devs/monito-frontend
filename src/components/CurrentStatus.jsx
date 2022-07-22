@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react";
 import { getCurrentStatus } from "../services/monitorServices";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableRow from "@mui/material/TableRow";
+import Editor from "@monaco-editor/react";
 
 import Box from "@mui/material/Box";
 
@@ -16,7 +12,17 @@ const CurrentStatus = ({ currentStatusData }) => {
   }, []);
 
   return (
-    <Box sx={{ ml: 6 }}>
+    <Box
+      sx={{
+        ml: 6,
+        mt: 0,
+        p: 1,
+        color: "#ffffff",
+        backgroundColor: "#1f1b24",
+        borderRadius: "5px",
+        maxWidth: { xs: "80vw", md: "50vw" },
+      }}
+    >
       {data ? (
         <>
           <div>
@@ -26,60 +32,21 @@ const CurrentStatus = ({ currentStatusData }) => {
                 : "OOPS! The URL met an error!"}
             </b>
           </div>
-          <TableContainer>
-            <Table
-              sx={{ maxWidth: 700 }}
-              size="small"
-              aria-label="a dense table"
-            >
-              <TableBody>
-                <TableRow>
-                  <TableCell sx={{ border: 1 }}>
-                    <b>Response Time</b>
-                  </TableCell>
-                  <TableCell sx={{ border: 1 }}>{data.time_taken}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell sx={{ border: 1 }}>
-                    <b>Response Status Code</b>
-                  </TableCell>
-                  <TableCell sx={{ border: 1 }}>{data.status_code}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell sx={{ border: 1 }}>
-                    <b>Response Status Text</b>
-                  </TableCell>
-                  <TableCell sx={{ border: 1 }}>{data.status_text}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell sx={{ border: 1 }}>
-                    <b>Content Length</b>
-                  </TableCell>
-                  <TableCell sx={{ border: 1 }}>
-                    {data.content_length}
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell sx={{ border: 1 }}>
-                    <b>Content Type</b>
-                  </TableCell>
-                  <TableCell sx={{ border: 1 }}>{data.content_type}</TableCell>
-                </TableRow>
-                {["GET"].includes(data.httpMethod) && data.isAPI && (
-                  <>
-                    <TableRow>
-                      <TableCell sx={{ border: 1 }}>
-                        <b>JSON Response</b>:
-                      </TableCell>
-                      <TableCell sx={{ border: 1 }}>
-                        <pre>{JSON.stringify(data.jsonBody, null, 2)}</pre>
-                      </TableCell>
-                    </TableRow>
-                  </>
-                )}
-              </TableBody>
-            </Table>
-          </TableContainer>
+          Response Time: {data.time_taken} <br />
+          Response Status Code: {data.status_code} <br />
+          Response Status Text: {data.status_text} <br />
+          Content Length: {data.content_length} <br />
+          Content Type: {data.content_type} <br />
+          {["GET"].includes(data.httpMethod) && data.isAPI && (
+            <>
+              JSON Response:
+              <Editor
+                height="20vh"
+                defaultLanguage="json"
+                defaultValue={JSON.stringify(data.jsonBody, null, 2)}
+              />
+            </>
+          )}
         </>
       ) : (
         "Processing Request..."
