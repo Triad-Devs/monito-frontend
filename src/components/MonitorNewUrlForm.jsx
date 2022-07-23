@@ -43,7 +43,7 @@ const MonitorNewUrlForm = ({ actionProvider }) => {
 
     setUrlError(false);
     setEditorError(false);
-    setAlertError(true);
+    setAlertError(false);
 
     const data = new FormData(e.currentTarget);
 
