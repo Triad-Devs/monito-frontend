@@ -232,11 +232,11 @@ const URLList = ({ actionProvider, setState }) => {
                     <Stack direction="row" spacing={1}>
                       <div>
                         <Button
+                          LinkComponent="a"
+                          href={`https://sitecheck.sucuri.net/results/${d.url}`}
                           size="small"
                           variant="outlined"
-                          onClick={() =>
-                            handleClickOpen("Security Report", d.url)
-                          }
+                          target="_blank"
                         >
                           Security Report
                         </Button>
