@@ -87,7 +87,7 @@ const URLList = ({ actionProvider, setState }) => {
 
   return (
     <>
-      {apis.length === 0 ? (
+      {apis.length === 0 && websites.length === 0 ? (
         <>
           <Box sx={{ ml: 6, mb: 1 }}>
             No existing URLs to monitor. Please enter new URL.
@@ -98,7 +98,7 @@ const URLList = ({ actionProvider, setState }) => {
         <>
           <Box sx={{ ml: 6, width: { xs: "85%", md: "75%" } }}>
             <div>
-              <b>API endpoints</b>
+              <b>{apis.length > 0 && "API endpoints"}</b>
             </div>
             {apis.map((d) => {
               return (
@@ -166,7 +166,7 @@ const URLList = ({ actionProvider, setState }) => {
           </Box>
           <Box sx={{ ml: 6, width: { xs: "85%", md: "75%" } }}>
             <div>
-              <b>Webpages</b>
+              <b>{websites.length > 0 && "Webpages"}</b>
             </div>
             {websites.map((d) => {
               return (
