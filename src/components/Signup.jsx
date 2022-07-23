@@ -42,13 +42,13 @@ const Signup = ({ actionProvider }) => {
       console.log(formData.email);
     }
 
-    if (formData.username === "" || formData.username.length < 6) {
+    if (formData.username === "" || formData.username.length < 4) {
       setUnameError(true);
       submit = false;
       console.log(formData.username);
     }
 
-    if (formData.password === "" || formData.password.length < 6) {
+    if (formData.password === "" || formData.password.length < 8) {
       setPassError(true);
       submit = false;
       console.log(formData.password);
