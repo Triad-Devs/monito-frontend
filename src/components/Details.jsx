@@ -46,7 +46,7 @@ const Details = ({ detailsData }) => {
             height="20vh"
             theme="vs-dark"
             defaultLanguage="json"
-            defaultValue={data.JSONbody}
+            defaultValue={JSON.stringify(data.JSONbody, null, 2)}
           />
         </>
       )}
