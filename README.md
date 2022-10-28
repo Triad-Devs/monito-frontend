@@ -11,4 +11,18 @@ A user-friendly responsive chat bot “monito” in the form of a web app that c
   - Security statistics, risks and status
 - Downloadable audit report for performance, accessibility, Progressive Web Apps (PWA’s) and Search Engine Optimization (SEO)
 - Notification and alert system based on alert condition set by user
-- Backend API can be integrated with other chat platforms such as slack, discord, telegram, etc![image](https://user-images.githubusercontent.com/65722610/198498205-06042c67-aa00-4ec1-bef2-740963bdb779.png)
+- Backend API can be integrated with other chat platforms such as slack, discord, telegram, etc
+
+## Contributors
+| Sr. No. | Name     | GitHub |
+| ------ | -------- | ----------- |
+| 1.     | Viraj Patidar | [@VirajPatidar](https://github.com/VirajPatidar) |
+| 2.     | Anurag Singh | [@heyanurag](https://github.com/heyanurag)|
+| 3.     | Atharva Patil | [@atharvadpatil](https://github.com/atharvadpatil)|
+
+## Architecture
+![Architecture](https://github.com/Triad-Devs/monito-frontend/blob/main/architecture.png)
+
+## Business Impact
+
+## Future plans and Improvements
