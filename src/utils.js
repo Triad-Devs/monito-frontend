@@ -7,9 +7,8 @@ export const getKeyByValue = (object, value) => {
 };
 
 export const REPEAT_AFTER = {
-  "1 minute": 1,
-  "5 Minutes": 5,
-  "10 Minutes": 10,
+  // "5 Minutes": 5,
+  // "10 Minutes": 10,
   "15 Minutes": 15,
   "1 Hour": 60,
   "12 Hours": 720,
